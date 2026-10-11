@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xviews Glotzofon</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="app-icon" viewBox="0 0 110 110"><g stroke="none"><rect width="110" height="110" rx="24" fill="#4C1D95"/><rect x="18" y="22" width="74" height="52" rx="7" fill="#fff"/><rect x="25" y="29" width="60" height="38" rx="4" fill="#22D3EE"/><path d="M33 48 Q55 32 77 48 Q55 64 33 48 Z" fill="#4C1D95"/><circle cx="55" cy="48" r="7" fill="#EC4899"/><rect x="49" y="73" width="12" height="10" fill="#fff"/><rect x="36" y="82" width="38" height="7" rx="3.5" fill="#fff"/></g></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 19H16a3.5 3.5 0 0 0 0-7H8a3.5 3.5 0 0 1 0-7h7.5"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/></symbol>
+  <symbol id="i-relay" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><path d="M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+</svg>
+
+<!-- ============ Leiste oben (wie bei Xviews Stickpilot) ============ -->
+<header id="appbar" class="appbar">
+  <button class="appbar-brand" data-go="home" title="Zur Startseite">
+    <svg class="logo" viewBox="0 0 110 110" aria-hidden="true"><use href="#app-icon"/></svg>
+    <span class="appbar-text">
+      <strong>Xviews Glotzofon</strong>
+      <span>Bildschirm zeigen – ohne Konto, ohne Installation.</span>
+    </span>
+  </button>
+  <nav class="appbar-nav">
+    <button class="icon-btn" data-go="info" title="Info" aria-label="Info"><svg><use href="#i-info"/></svg></button>
+    <button class="icon-btn" data-go="settings" title="Einstellungen" aria-label="Einstellungen"><svg><use href="#i-gear"/></svg></button>
+  </nav>
+</header>
+
+<!-- ============ Startseite ============ -->
+<main id="home" class="screen active">
+  <div class="home-wrap">
+    <div id="updateBanner" class="banner" hidden>
+      <svg class="banner-icon"><use href="#i-download"/></svg>
+      <div class="banner-text">
+        <strong id="bannerTitle">Neue Version verfügbar</strong>
+        <span id="bannerSub" class="muted small"></span>
+        <div id="bannerProgress" class="progress" hidden><div></div></div>
+      </div>
+      <div class="banner-actions">
+        <button id="bannerInstall" class="primary small-btn">Jetzt aktualisieren</button>
+        <button id="bannerNotes" class="ghost-btn small-btn">Was ist neu?</button>
+        <button id="bannerClose" class="icon-btn" title="Später" aria-label="Später"><svg><use href="#i-close"/></svg></button>
+      </div>
+    </div>
+
+    <div class="cards">
+      <section class="card web-only">
+        <h2>Selbst zeigen?</h2>
+        <p class="muted">Zum Teilen brauchst du die kleine Windows-App: eine einzige EXE, ohne Installation und ohne Konto.</p>
+        <a class="primary btn-link dl-link" href="#">XviewsGlotzofon.exe herunterladen</a>
+      </section>
+      <section class="card app-only">
+        <h2>Zeigen</h2>
+        <p class="muted">Bildschirm oder Fenster freigeben und den Code weitergeben.</p>
+        <label class="field">
+          <span>Modus</span>
+          <select id="quality">
+            <option value="detail">Scharf (Text, Desktop)</option>
+            <option value="motion">Flüssig (Spiele, Videos)</option>
+          </select>
+        </label>
+        <button id="btnShare" class="primary">Bildschirm teilen</button>
+      </section>
+
+      <section class="card">
+        <h2>Zuschauen</h2>
+        <div class="seg app-only" id="waySeg" role="tablist" aria-label="Verbindungsweg">
+          <button type="button" role="tab" data-way="code" class="active">Über Code</button>
+          <button type="button" role="tab" data-way="direct">Direkt (IP)</button>
+        </div>
+        <label class="field">
+          <span>Code</span>
+          <input id="codeInput" maxlength="7" placeholder="ABC-123" autocomplete="off" spellcheck="false">
+        </label>
+        <label id="addrField" class="field" hidden>
+          <span>IP-Adresse im selben Netz</span>
+          <input id="addrInput" placeholder="192.168.1.20" autocomplete="off" spellcheck="false">
+        </label>
+        <p id="wayHint" class="muted small">Klappt überall mit Internet.</p>
+        <label class="field">
+          <span>Dein Name (optional)</span>
+          <input id="nameInput" maxlength="24" placeholder="z. B. Max" autocomplete="off" spellcheck="false">
+        </label>
+        <button id="btnWatch" class="primary">Verbinden</button>
+      </section>
+    </div>
+    <p id="homeMsg" class="msg" role="status"></p>
+  </div>
+</main>
+
+<!-- ============ Teilen läuft ============ -->
+<main id="host" class="screen">
+  <div class="host-wrap">
+    <div class="live"><span class="dot"></span> Du teilst gerade</div>
+    <p class="muted">Gib diesen Code weiter:</p>
+    <button id="codeBox" class="code" title="Klicken zum Kopieren"></button>
+    <div class="code-actions">
+      <span id="copyHint" class="chip">Klicken zum Kopieren</span>
+      <button id="btnCopyLink" class="chip chip-btn" type="button" title="Dein Gegenüber braucht dann keine App, nur einen Browser"><svg><use href="#i-link"/></svg><span>Browser-Link kopieren</span></button>
+    </div>
+
+    <!-- Countdown: erst das Fenster, dann die Leiste -->
+    <div id="barCountdown" class="cd-card" hidden>
+      <svg class="cd-ring" viewBox="0 0 36 36" aria-hidden="true">
+        <circle class="cd-track" cx="18" cy="18" r="15.5"/>
+        <circle id="barCdRing" class="cd-fill" cx="18" cy="18" r="15.5"/>
+        <text id="barCdNum" x="18" y="18">5</text>
+      </svg>
+      <div class="cd-text">
+        <strong>Gleich wird daraus die Leiste</strong>
+        <span id="barCdText">Der Code bleibt oben in der Leiste sichtbar.</span>
+      </div>
+      <button id="barNow" class="primary small-btn" type="button">Jetzt</button>
+      <button id="barStay" class="ghost-btn small-btn" type="button">Offen lassen</button>
+    </div>
+    <p id="directInfo" class="direct-info small" hidden></p>
+    <p id="netWarn" class="warn small" hidden></p>
+    <div class="preview-wrap">
+      <video id="preview" muted playsinline autoplay></video>
+      <span id="previewPing" class="ping-mark" hidden></span>
+    </div>
+    <p class="viewer-line"><span id="hostSignal" class="sig-dot" hidden></span><span id="viewerCount" class="muted">Noch niemand schaut zu.</span></p>
+    <p id="encInfo" class="muted small"></p>
+
+    <!-- Schnellauswahl: wirkt sofort, ohne neue Verbindung -->
+    <section class="quick" aria-label="Schnellauswahl">
+      <div class="quick-item">
+        <span>Modus</span>
+        <div class="seg" id="qMode">
+          <button type="button" data-q="detail">Scharf · 30</button>
+          <button type="button" data-q="motion">Flüssig · 60</button>
+        </div>
+      </div>
+      <label class="quick-item">
+        <span>Auflösung</span>
+        <select id="qHeight">
+          <option value="0">Original</option>
+          <option value="1440">1440p</option>
+          <option value="1080">1080p</option>
+          <option value="720">720p</option>
+        </select>
+      </label>
+      <label class="quick-item">
+        <span>Datenrate</span>
+        <select id="qBitrate">
+          <option value="0">Automatisch</option>
+          <option value="5">5 Mbit/s</option>
+          <option value="10">10 Mbit/s</option>
+          <option value="20">20 Mbit/s</option>
+          <option value="40">40 Mbit/s</option>
+          <option value="60">60 Mbit/s</option>
+        </select>
+      </label>
+    </section>
+
+    <div class="btn-row center-row">
+      <button id="btnToBar" class="ghost-btn app-only" type="button">Als Leiste</button>
+      <button id="btnSource" class="ghost-btn" type="button">Quelle wechseln</button>
+      <button id="btnToTray" class="ghost-btn" type="button" hidden>In den Infobereich</button>
+      <button id="btnStop" class="danger">Teilen beenden</button>
+    </div>
+  </div>
+</main>
+
+<!-- ============ Schwebende Leiste beim Teilen ============ -->
+<main id="bar" class="screen">
+  <div class="fbar" id="fbar">
+    <span class="fb-grip" title="Ziehen zum Verschieben" aria-hidden="true">⋮⋮</span>
+    <span class="dot"></span>
+    <button id="fbCode" class="fb-code" title="Klicken zum Kopieren"></button>
+    <span class="fb-viewers"><span id="fbSignal" class="sig-dot" hidden></span><span id="fbCount">0</span> <svg class="fb-ico"><use href="#i-eye"/></svg></span>
+    <span id="fbMsg" class="fb-msg" aria-live="polite"></span>
+    <span class="fb-tools">
+      <span class="seg fb-seg" id="fbMode">
+        <button type="button" data-q="detail" title="Scharf (Text, Desktop)">30</button>
+        <button type="button" data-q="motion" title="Flüssig (Spiele, Videos)">60</button>
+      </span>
+      <select id="fbHeight" title="Auflösung">
+        <option value="0">Original</option>
+        <option value="1440">1440p</option>
+        <option value="1080">1080p</option>
+        <option value="720">720p</option>
+      </select>
+      <select id="fbBitrate" title="Datenrate">
+        <option value="0">Auto</option>
+        <option value="5">5 Mbit/s</option>
+        <option value="10">10 Mbit/s</option>
+        <option value="20">20 Mbit/s</option>
+        <option value="40">40 Mbit/s</option>
+          <option value="60">60 Mbit/s</option>
+      </select>
+      <button id="fbSource" class="fb-btn" title="Quelle wechseln"><svg><use href="#i-monitor"/></svg></button>
+      <button id="fbWindow" class="fb-btn" title="Fenster öffnen"><svg><use href="#i-expand"/></svg></button>
+      <button id="fbStop" class="fb-btn fb-stop" title="Teilen beenden"><svg><use href="#i-close"/></svg></button>
+    </span>
+  </div>
+</main>
+
+<!-- ============ Zuschauen läuft ============ -->
+<main id="viewer" class="screen">
+  <div id="stage" class="stage">
+    <video id="remote" playsinline autoplay></video>
+  </div>
+  <div id="waiting" class="waiting">Verbinde …</div>
+
+  <!-- Verbindungsampel: immer sichtbar, oben rechts -->
+  <div id="signal" class="signal" hidden><span class="sig-dot"></span><span id="sigText"></span></div>
+
+  <!-- Reaktionen: kurze Nachrichten an den Teilenden -->
+  <div id="reactions" class="reactions" aria-label="Reaktionen">
+    <button class="react" data-r="👍" title="Daumen hoch">👍</button>
+    <button class="react" data-r="😂" title="Lustig">😂</button>
+    <button class="react" data-r="👀" title="Ich schau hin">👀</button>
+    <button class="react" data-r="🔍 Größer bitte">🔍 Größer bitte</button>
+    <button class="react" data-r="🔇 Ton fehlt">🔇 Ton fehlt</button>
+    <button class="react" data-r="⏸️ Kurz warten">⏸️ Kurz warten</button>
+  </div>
+
+  <div class="bar">
+    <span id="stats" class="stats"></span>
+    <span class="spacer"></span>
+    <span class="zoom-ctl" title="Zoom: Mausrad · Verschieben: ziehen · 0 = einpassen">
+      <button id="zoomOut" class="ghost" aria-label="Verkleinern">−</button>
+      <button id="zoomReset" class="ghost zoom-val">100 %</button>
+      <button id="zoomIn" class="ghost" aria-label="Vergrößern">+</button>
+    </span>
+    <button id="btnPing" class="ghost" title="Auf eine Stelle zeigen (auch Rechtsklick ins Bild)">Ping</button>
+    <button id="btnMute" class="ghost" title="Ton an/aus">Ton: an</button>
+    <button id="btnFull" class="ghost" title="Vollbild (Doppelklick, F11)">Vollbild</button>
+    <button id="btnLeave" class="ghost danger-text">Trennen</button>
+  </div>
+</main>
+
+<!-- ============ Einstellungen ============ -->
+<main id="settings" class="screen page">
+  <div class="page-wrap">
+    <header class="page-head">
+      <button class="icon-btn" data-go="home" title="Zurück" aria-label="Zurück"><svg><use href="#i-back"/></svg></button>
+      <h1>Einstellungen</h1>
+      <span id="savedHint" class="muted small saved" hidden>Gespeichert</span>
+    </header>
+
+    <section class="card set-card app-only">
+      <div class="card-head">
+        <span class="ci"><svg><use href="#i-monitor"/></svg></span>
+        <div><h2>Freigabe</h2><p class="muted small">Wie dein Bildschirm übertragen wird.</p></div>
+      </div>
+      <div class="set">
+        <div class="set-text"><strong>Modus beim Start</strong><span>Scharf für Text und Desktop, flüssig für Spiele und Videos.</span></div>
+        <select id="sQuality">
+          <option value="detail">Scharf – 30 fps</option>
+          <option value="motion">Flüssig – 60 fps</option>
+        </select>
+      </div>
+      <div class="set">
+        <div class="set-text"><strong>Höchste Auflösung</strong><span>Kleiner spart Datenrate.</span></div>
+        <select id="sMaxHeight">
+          <option value="0">Original</option>
+          <option value="2160">2160p (4K)</option>
+          <option value="1440">1440p</option>
+          <option value="1080">1080p</option>
+          <option value="720">720p</option>
+        </select>
+      </div>
+      <div class="set">
+        <div class="set-text"><strong>Höchste Datenrate</strong><span>Bei langsamer Leitung niedriger stellen.</span></div>
+        <select id="sMaxBitrate">
+          <option value="0">Automatisch</option>
+          <option value="5">5 Mbit/s</option>
+          <option value="10">10 Mbit/s</option>
+          <option value="20">20 Mbit/s</option>
+          <option value="40">40 Mbit/s</option>
+          <option value="60">60 Mbit/s</option>
+        </select>
+      </div>
+      <div class="set">
+        <div class="set-text"><strong>Grafikkarte</strong><span>Bei Laptops mit zwei Grafikchips nutzt „Leistungsstark“ die dedizierte Karte (z.&nbsp;B. NVIDIA) zum Kodieren.</span></div>
+        <select id="sGpu">
+          <option value="high">Leistungsstark (empfohlen)</option>
+          <option value="auto">Windows entscheidet</option>
+        </select>
+      </div>
+      <div class="set">
+        <div class="set-text"><strong>Codec</strong><span>Nur lizenzfreie Codecs. „Automatisch“ nimmt AV1, wenn die Grafikkarte es kann, sonst VP9.</span></div>
+        <select id="sCodec">
+          <option value="auto">Automatisch (empfohlen)</option>
+          <option value="av1">AV1</option>
+          <option value="vp9">VP9</option>
+          <option value="vp8">VP8 (für alte PCs)</option>
+        </select>
+      </div>
+      <div class="set nested" id="gpuRestartRow" hidden>
+        <div class="set-text"><strong>Neustart nötig</strong><span>Die Grafikkarte wird beim Start der App festgelegt.</span></div>
+        <button id="gpuRestart" class="ghost-btn small-btn" type="button">Jetzt neu starten</button>
+      </div>
+      <label class="set">
+        <div class="set-text"><strong>Systemton anbieten</strong><span>Im Freigabe-Dialog lässt sich der Ton dann mitsenden.</span></div>
+        <input type="checkbox" class="switch" id="sShareAudio">
+      </label>
+      <div class="set">
+        <div class="set-text"><strong>Beim Teilen</strong><span>Die schwebende Leiste liegt am Bildschirmrand, klappt sich weg und ist für Zuschauer unsichtbar.</span></div>
+        <select id="sShareView">
+          <option value="bar">Schwebende Leiste (empfohlen)</option>
+          <option value="tray">In den Infobereich</option>
+          <option value="window">Fenster bleibt offen</option>
+        </select>
+      </div>
+      <label class="set">
+        <div class="set-text"><strong>Code automatisch kopieren</strong><span>Direkt in die Zwischenablage, zum Einfügen im Messenger.</span></div>
+        <input type="checkbox" class="switch" id="sAutoCopy">
+      </label>
+    </section>
+
+    <section class="card set-card app-only">
+      <div class="card-head">
+        <span class="ci"><svg><use href="#i-route"/></svg></span>
+        <div><h2>Verbindungswege beim Teilen</h2><p class="muted small">Wie andere dich erreichen können. Der Code wird immer gebraucht.</p></div>
+      </div>
+      <label class="set">
+        <div class="set-text"><strong>Immer denselben Code</strong><span>Praktisch für Freunde: Sie merken sich deinen Code wie eine Nummer. Jeder, der ihn kennt, kann zuschauen, solange du teilst.</span></div>
+        <input type="checkbox" class="switch" id="sFixed">
+      </label>
+      <div class="set nested" id="fixedRow" hidden>
+        <div class="set-text"><strong>Dein Code</strong><span>Neu erzeugen, falls er an die Falschen geraten ist.</span></div>
+        <span class="fixed-code" id="myCodeView"></span>
+        <button id="newMyCode" class="ghost-btn small-btn" type="button">Neu erzeugen</button>
+      </div>
+      <label class="set">
+        <div class="set-text"><strong>Über Code (Internet)</strong><span>Klappt fast überall. Nutzt den Vermittlungsserver unten.</span></div>
+        <input type="checkbox" class="switch" id="sInternet">
+      </label>
+      <label class="set">
+        <div class="set-text"><strong>Direkt im eigenen Netz (IP-Adresse)</strong><span>Ohne Server, auch ganz ohne Internet. Windows fragt beim ersten Mal nach einer Firewall-Freigabe.</span></div>
+        <input type="checkbox" class="switch" id="sDirect">
+      </label>
+      <div class="set nested" id="directPortRow">
+        <div class="set-text"><strong>Port</strong><span>Nur ändern, wenn 47800 schon belegt ist.</span></div>
+        <input id="sDirectPort" type="number" min="1024" max="65535" class="narrow">
+      </div>
+      <p id="waysMsg" class="msg small set-msg"></p>
+    </section>
+
+    <section class="card set-card">
+      <div class="card-head">
+        <span class="ci"><svg><use href="#i-server"/></svg></span>
+        <div><h2>Vermittlungsserver</h2><p class="muted small">Darüber finden sich beide Seiten per Code. Nur Verbindungsdaten, nie das Bild.</p></div>
+      </div>
+      <div class="choices">
+        <label class="choice">
+          <input type="radio" name="sServer" value="public" id="sServerPublic">
+          <strong>Öffentlich</strong>
+          <span>0.peerjs.com, kostenlos, nichts einzurichten</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="sServer" value="custom" id="sServerCustom">
+          <strong>Eigener Server</strong>
+          <span>Dein eigener PeerJS-Server</span>
+        </label>
+      </div>
+      <div id="customServer" class="fields three">
+        <label class="f wide"><span>Adresse</span><input id="sHost" placeholder="peer.example.de" spellcheck="false"></label>
+        <label class="f"><span>Port</span><input id="sPort" type="number" min="1" max="65535"></label>
+        <label class="f"><span>Pfad</span><input id="sPath" placeholder="/" spellcheck="false"></label>
+        <label class="f"><span>Schlüssel</span><input id="sKey" placeholder="peerjs" spellcheck="false"></label>
+        <label class="set wide">
+          <div class="set-text"><strong>Verschlüsselt (https/wss)</strong><span>Beide Seiten müssen denselben Server eingestellt haben.</span></div>
+          <input type="checkbox" class="switch" id="sSecure">
+        </label>
+      </div>
+    </section>
+
+    <section class="card set-card">
+      <div class="card-head">
+        <span class="ci"><svg><use href="#i-relay"/></svg></span>
+        <div><h2>Relay-Server (TURN)</h2><p class="muted small">Optional. Nur nötig, wenn keine direkte Verbindung zustande kommt (z.&nbsp;B. Mobilfunk/CGNAT). Dann läuft das Bild über diesen Server.</p></div>
+      </div>
+      <div class="fields">
+        <label class="f wide"><span>Adresse</span><input id="sTurnUrl" placeholder="turn:turn.example.de:3478" spellcheck="false"></label>
+        <label class="f"><span>Benutzer</span><input id="sTurnUser" spellcheck="false" autocomplete="off"></label>
+        <label class="f"><span>Passwort</span><input id="sTurnPass" type="password" autocomplete="off"></label>
+      </div>
+    </section>
+
+    <section class="card set-card">
+      <div class="card-head">
+        <span class="ci"><svg><use href="#i-sliders"/></svg></span>
+        <div><h2>App</h2><p class="muted small">Aussehen, Sprache und Updates.</p></div>
+      </div>
+      <div class="set">
+        <div class="set-text"><strong>Design</strong><span>Hell, dunkel oder wie Windows.</span></div>
+        <select id="sTheme">
+          <option value="system">Wie Windows</option>
+          <option value="light">Hell</option>
+          <option value="dark">Dunkel</option>
+        </select>
+      </div>
+      <div class="set">
+        <div class="set-text"><strong>Sprache</strong><span>Deutsch oder Englisch.</span></div>
+        <select id="sLang">
+          <option value="auto">Wie Windows</option>
+          <option value="de">Deutsch</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+      <div class="set app-only">
+        <div class="set-text"><strong>Nach Updates suchen</strong><span>Fragt nur die öffentliche Release-Seite auf GitHub ab.</span></div>
+        <select id="sUpdate">
+          <option value="start">Bei jedem Start</option>
+          <option value="daily">Einmal am Tag</option>
+          <option value="weekly">Einmal pro Woche</option>
+          <option value="never">Nie</option>
+        </select>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- ============ Info ============ -->
+<main id="info" class="screen page">
+  <div class="page-wrap">
+    <header class="page-head">
+      <button class="icon-btn" data-go="home" title="Zurück" aria-label="Zurück"><svg><use href="#i-back"/></svg></button>
+      <h1>Info</h1>
+    </header>
+
+    <div class="info-grid">
+    <!-- Logo -->
+    <section class="card brand-card">
+      <img src="brand/xviews.png" alt="Xviews" loading="lazy">
+    </section>
+
+    <div class="info-main">
+    <!-- Name & Version -->
+    <section class="card">
+      <div class="name-head">
+        <svg class="logo" viewBox="0 0 110 110" aria-hidden="true"><use href="#app-icon"/></svg>
+        <div>
+          <h2 class="app-name">Xviews Glotzofon</h2>
+          <p class="muted"><span id="infoVersion"></span><span id="infoDate"></span></p>
+        </div>
+      </div>
+      <p>von Xviews</p>
+      <p class="web-only"><a class="dl-link" href="#">Xviews Glotzofon für Windows herunterladen</a></p>
+      <p class="muted small">Bildschirm schnell mit jemandem teilen, den man kennt: Code weitergeben, zuschauen lassen. Ohne Konto, ohne Installation, nur zuschauen.</p>
+
+      <div class="info-row app-only">
+        <span class="label">Updates</span>
+        <span id="updStatus" class="value">–</span>
+        <span class="actions">
+          <button id="updInstall" class="primary small-btn" hidden>Jetzt aktualisieren</button>
+          <button id="updPage" class="ghost-btn small-btn">Download-Seite</button>
+          <button id="updCheck" class="ghost-btn small-btn">Jetzt suchen</button>
+        </span>
+      </div>
+      <div id="updProgress" class="progress" hidden><div></div></div>
+      <div class="info-row app-only">
+        <span class="label">Einstellungen</span>
+        <code id="configDir" class="value"></code>
+        <span class="actions"><button id="openConfig" class="ghost-btn small-btn">Öffnen</button></span>
+      </div>
+
+      <div class="hint-box app-only">
+        <strong id="modeTitle">So speichert die App</strong>
+        <p id="modeText" class="small"></p>
+        <button id="switchMode" class="ghost-btn small-btn"></button>
+        <p id="modeMsg" class="msg small"></p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Was geht ins Internet?</h2>
+      <ul class="plain small">
+        <li><strong>Vermittlungsserver</strong> (0.peerjs.com oder dein eigener): nur beim Teilen/Zuschauen, um die Verbindung aufzubauen. Er sieht Code und IP-Adressen, nicht das Bild.</li>
+        <li><strong>STUN</strong> (Google, Cloudflare): damit beide Seiten ihre öffentliche Adresse erfahren.</li>
+        <li><strong>Das Bild</strong> läuft direkt und verschlüsselt (DTLS-SRTP) von PC zu PC – außer du stellst einen eigenen Relay-Server ein.</li>
+        <li><strong>Update-Suche:</strong> die öffentliche Release-Seite auf GitHub (einstellbar).</li>
+      </ul>
+      <p class="muted small">Die App sammelt keine Daten und schickt nichts an mich.</p>
+    </section>
+
+    <section class="card">
+      <h2>Hinweis</h2>
+      <p class="small">Dieses Tool ist ein privates Projekt. Wer zuschaut, sieht alles, was im freigegebenen Bildschirm oder Fenster passiert – vorher prüfen, was geteilt wird, und den Code nur Leuten geben, die man kennt. Nutzung auf eigene Verantwortung.</p>
+    </section>
+
+    <section class="card">
+      <h2>Nutzungsbedingungen</h2>
+      <p class="small">Xviews Glotzofon ist kostenlos für die private Nutzung. Die unveränderte Weitergabe der Programmdatei ist erlaubt.</p>
+      <p class="small">Nicht gestattet sind: der Verkauf, das Verändern des Programms, das Zurückentwickeln (Dekompilieren, Disassemblieren), die Übernahme von Programmcode oder Teilen davon in andere Software sowie das Einspeisen des Programms oder seines Codes in KI-Systeme, um es zu analysieren oder nachzubauen.</p>
+      <p class="small muted">© 2026 Xviews. Alle Rechte vorbehalten. Die Rechte an eingebundenen Komponenten liegen bei ihren jeweiligen Urhebern (siehe unten).</p>
+    </section>
+
+    <section class="card">
+      <h2>Verwendete Komponenten &amp; Quellen</h2>
+      <ul id="credits" class="credits"></ul>
+      <details id="licenses">
+        <summary>Lizenzen anzeigen</summary>
+        <pre id="licenseText">Lade …</pre>
+      </details>
+    </section>
+
+    <p class="muted small center"><a href="#" id="linkGithub">GitHub</a> · <a href="#" id="linkIssues">Fehler melden</a></p>
+    </div><!-- /info-main -->
+    </div><!-- /info-grid -->
+  </div>
+</main>
+
+<!-- Kurze Meldungen (Reaktionen der Zuschauer) -->
+<div id="toasts" class="toasts" aria-live="polite"></div>
+
+<script src="peerjs.min.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+<script src="extras.js"></script>
+<script src="bar.js"></script>
+</body>
+</html>
