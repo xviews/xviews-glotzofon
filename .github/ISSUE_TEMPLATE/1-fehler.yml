@@ -1,0 +1,56 @@
+name: Fehler melden
+description: Etwas funktioniert nicht wie erwartet
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke fürs Melden! Je genauer die Angaben, desto schneller lässt sich der Fehler finden.
+        Bitte keine persönlichen Daten (Passwörter, Codes, Kennzeichen o. Ä.) eintragen.
+  - type: textarea
+    id: was
+    attributes:
+      label: Was ist passiert?
+      description: Was hast du erwartet, was ist stattdessen passiert? Fehlermeldungen bitte wörtlich einfügen.
+    validations:
+      required: true
+  - type: textarea
+    id: schritte
+    attributes:
+      label: Wie lässt sich der Fehler nachstellen?
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+  - type: input
+    id: version
+    attributes:
+      label: Version von Xviews Glotzofon
+      description: Steht in der App unter Info.
+      placeholder: z. B. 1.0.0
+    validations:
+      required: true
+  - type: dropdown
+    id: windows
+    attributes:
+      label: Windows
+      options:
+        - Windows 11
+        - Windows 10
+        - Anderes
+    validations:
+      required: true
+  - type: dropdown
+    id: verbindung
+    attributes:
+      label: Verbindung
+      options:
+        - Über Code (Internet)
+        - Direkt (IP im LAN)
+        - Zuschauen im Browser
+        - Weiß nicht
+  - type: textarea
+    id: bilder
+    attributes:
+      label: Screenshots oder Fotos
+      description: Gern per Drag & Drop hier hineinziehen.
