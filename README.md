@@ -1,5 +1,7 @@
 # Xviews Glotzofon
 
+English version: [README.en.md](README.en.md) · Webseite: [xviews.github.io/xviews-glotzofon](https://xviews.github.io/xviews-glotzofon/)
+
 **Nervt es dich auch?** Du willst deinen Freunden nur kurz etwas auf deinem Bildschirm zeigen, und plötzlich muss jeder erst ein Fernwartungsprogramm installieren, ein Konto anlegen oder in einen Call einsteigen.
 
 **Mit Xviews Glotzofon geht das so:** EXE starten, Code weitergeben, fertig. Deine Freunde schauen in der App oder einfach im Browser zu. Ohne Installation, ohne Konto, ohne Fernsteuerung, nur zuschauen. Eine einzige EXE mit rund 9 MB, kostenlos.
@@ -22,7 +24,7 @@ Direkter Download der neuesten Version für Windows 10/11 (64 Bit), ohne Install
   - **Quelle wechseln:** anderen Monitor oder anderes Fenster teilen, ohne neuen Code.
   - **Fester Code:** auf Wunsch immer derselbe Code, den sich Freunde merken können.
 - **Zuschauen:** Code eingeben, verbinden. Vollbild per Doppelklick oder F11, Ton an/aus, Anzeige von Auflösung, fps und Datenrate.
-  - **Auch ohne App im Browser:** einfach den Link öffnen, z. B. `https://xviews.github.io/xviews-glotzofon/#K7M-X4P`.
+  - **Auch ohne App im Browser:** auf der [Webseite](https://xviews.github.io/xviews-glotzofon/) den Code eintippen oder den Link aus der App öffnen, z. B. `https://xviews.github.io/xviews-glotzofon/#K7M-X4P`.
   - **Zoom und Verschieben** mit Mausrad und Ziehen, praktisch bei großen Bildschirmen.
   - **Reaktionen und Zeigen-Ping:** 👍, „Größer bitte“, „Ton fehlt“ … Mit Rechtsklick ins Bild erscheint beim Teilenden an genau der Stelle ein Kreis auf dem Bildschirm.
   - **Verbindungsampel:** grün, gelb oder rot, mit Ping und Paketverlust.
