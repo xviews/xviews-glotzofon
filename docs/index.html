@@ -63,7 +63,7 @@ h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent2), v
 .watch::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, #ffffff06 0 1px, transparent 1px 4px); }
 .watch > * { position: relative; z-index: 1; }
 .watch .tv { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
-.watch .tv span { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, #ec489940, #22d3ee30); }
+.watch .tv > span { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, #ec489940, #22d3ee30); }
 .watch .tv svg { width: 22px; height: 22px; stroke: var(--accent); }
 .watch h2 { font-size: 24px; margin: 0; }
 .watch p { color: var(--muted); margin: 6px 0 18px; font-size: 15.5px; }
@@ -148,6 +148,13 @@ footer .links a:hover { color: var(--accent); }
 	th:nth-child(2), td:nth-child(2) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Sprache: nur die passende Fassung zeigen */
+html[lang="de"] [lang="en"], html[lang="en"] [lang="de"] { display: none !important; }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; margin-left: 4px; flex: none; }
+.lang button { background: none; border: 0; color: var(--muted); font: 600 13px Inter, sans-serif; padding: 5px 11px; cursor: pointer; }
+.lang button.on { background: var(--accent2); color: #fff; }
+@media (max-width: 620px) { header.top nav a.hide-xs { display: none; } header.top nav { gap: 14px; } }
 </style>
 </head>
 <body>
@@ -157,11 +164,12 @@ footer .links a:hover { color: var(--accent); }
 		<img src="img/logo.png" alt="">
 		<span class="name">Glotzofon</span>
 		<nav>
-			<a href="#zuschauen">Zuschauen</a>
-			<a href="#funktionen" class="hide-sm">Funktionen</a>
+			<a href="#zuschauen"><span lang="de">Zuschauen</span><span lang="en">Watch</span></a>
+			<a href="#funktionen" class="hide-sm"><span lang="de">Funktionen</span><span lang="en">Features</span></a>
 			<a href="#download" class="hide-sm">Download</a>
-			<a href="https://github.com/xviews/xviews-glotzofon">GitHub</a>
+			<a href="https://github.com/xviews/xviews-glotzofon" class="hide-xs">GitHub</a>
 		</nav>
+		<div class="lang" role="group" aria-label="Sprache / Language"><button data-lang="de">DE</button><button data-lang="en">EN</button></div>
 	</div>
 </header>
 
@@ -169,102 +177,122 @@ footer .links a:hover { color: var(--accent); }
 	<div class="wrap">
 		<div>
 			<div class="app"><img src="img/logo.png" alt=""><span class="kicker">Xviews Glotzofon</span></div>
-			<h1>Kurz was zeigen, <em>ohne Gedöns.</em></h1>
-			<p class="lead"><b>Nervt es dich auch?</b> Du willst deinen Freunden nur kurz etwas auf deinem Bildschirm zeigen, und plötzlich muss jeder erst ein Fernwartungsprogramm installieren, ein Konto anlegen oder in einen Call einsteigen.</p>
-			<p class="lead"><b>Mit Glotzofon:</b> EXE starten, Code weitergeben, fertig. Deine Freunde schauen in der App oder einfach hier im Browser zu. Nur zuschauen, keine Fernsteuerung.</p>
+			<h1><span lang="de">Kurz was zeigen, <em>ohne Gedöns.</em></span><span lang="en">Show your screen, <em>no fuss.</em></span></h1>
+			<p class="lead" lang="de"><b>Nervt es dich auch?</b> Du willst deinen Freunden nur kurz etwas auf deinem Bildschirm zeigen, und plötzlich muss jeder erst ein Fernwartungsprogramm installieren, ein Konto anlegen oder in einen Call einsteigen.</p>
+			<p class="lead" lang="en"><b>Sound familiar?</b> You just want to show your friends something on your screen, and suddenly everyone has to install a remote desktop tool, create an account or join a call.</p>
+			<p class="lead" lang="de"><b>Mit Glotzofon:</b> EXE starten, Code weitergeben, fertig. Deine Freunde schauen in der App oder einfach hier im Browser zu. Nur zuschauen, keine Fernsteuerung.</p>
+			<p class="lead" lang="en"><b>With Glotzofon:</b> start the EXE, pass on the code, done. Your friends watch in the app or right here in the browser. View only, no remote control.</p>
 			<div class="buttons">
 				<a class="btn primary" href="https://github.com/xviews/xviews-glotzofon/releases/latest/download/XviewsGlotzofon.exe">
 					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
 					Download <span id="ver"></span>
 				</a>
-				<a class="btn ghost" href="#so-gehts">So geht's</a>
+				<a class="btn ghost" href="#so-gehts"><span lang="de">So geht's</span><span lang="en">How it works</span></a>
 			</div>
-			<p class="small">Kostenlos · Windows 10/11 (64 Bit) · eine EXE, ca. 9 MB · ohne Installation, ohne Konto</p>
+			<p class="small"><span lang="de">Kostenlos · Windows 10/11 (64 Bit) · eine EXE, ca. 9 MB · ohne Installation, ohne Konto</span><span lang="en">Free · Windows 10/11 (64-bit) · one EXE, about 9 MB · no install, no account</span></p>
 		</div>
 
 		<form class="watch" id="zuschauen" autocomplete="off" novalidate>
 			<div class="tv">
 				<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10.5" r="2.5"/></svg></span>
-				<h2>Code bekommen?</h2>
+				<h2><span lang="de">Code bekommen?</span><span lang="en">Got a code?</span></h2>
 			</div>
-			<p>Hier eintippen und direkt im Browser zuschauen. Ohne App, ohne Anmeldung.</p>
+			<p><span lang="de">Hier eintippen und direkt im Browser zuschauen. Ohne App, ohne Anmeldung.</span><span lang="en">Type it in and watch right in your browser. No app, no sign-up.</span></p>
 			<label for="code">Code</label>
 			<input id="code" inputmode="text" maxlength="7" placeholder="ABC-123" spellcheck="false" aria-describedby="msg">
 			<div class="name">
-				<label for="who">Dein Name (optional)</label>
-				<input id="who" maxlength="24" placeholder="z. B. Max">
+				<label for="who"><span lang="de">Dein Name (optional)</span><span lang="en">Your name (optional)</span></label>
+				<input id="who" maxlength="24" placeholder="z. B. Max" data-de="z. B. Max" data-en="e.g. Max">
 			</div>
-			<button class="btn" type="submit">Verbinden</button>
+			<button class="btn" type="submit"><span lang="de">Verbinden</span><span lang="en">Connect</span></button>
 			<p class="msg" id="msg" role="status"></p>
-			<p class="hint">Am besten in Chrome, Edge oder Firefox am PC. Das Bild läuft direkt und verschlüsselt vom anderen PC zu dir.</p>
+			<p class="hint"><span lang="de">Am besten in Chrome, Edge oder Firefox am PC. Das Bild läuft direkt und verschlüsselt vom anderen PC zu dir.</span><span lang="en">Works best in Chrome, Edge or Firefox on a PC. The picture travels directly and encrypted from the other PC to you.</span></p>
 		</form>
 	</div>
 </div>
 
 <section id="so-gehts" class="alt">
 	<div class="wrap">
-		<h2>So geht's</h2>
-		<p class="sub">Drei Schritte, keine halbe Stunde Einrichtung.</p>
+		<h2><span lang="de">So geht's</span><span lang="en">How it works</span></h2>
+		<p class="sub"><span lang="de">Drei Schritte, keine halbe Stunde Einrichtung.</span><span lang="en">Three steps, not half an hour of setup.</span></p>
 		<div class="steps">
-			<div class="step"><b class="n">1</b><h3>Starten</h3><p><code>XviewsGlotzofon.exe</code> öffnen und auf „Bildschirm teilen“ klicken. Ganzen Bildschirm oder nur ein Fenster wählen.</p></div>
-			<div class="step"><b class="n">2</b><h3>Code rüber</h3><p>Glotzofon zeigt einen Code wie <code>K7M-X4P</code> und kopiert ihn gleich. Per Messenger weitergeben, fertig.</p></div>
-			<div class="step"><b class="n">3</b><h3>Glotze an</h3><p>Deine Freunde tippen den Code in der App oder <a href="#zuschauen">hier auf der Seite</a> ein und schauen zu.</p></div>
+			<div class="step"><b class="n">1</b><h3><span lang="de">Starten</span><span lang="en">Start</span></h3><p><span lang="de"><code>XviewsGlotzofon.exe</code> öffnen und auf „Bildschirm teilen“ klicken. Ganzen Bildschirm oder nur ein Fenster wählen.</span><span lang="en">Open <code>XviewsGlotzofon.exe</code> and click “Share screen”. Pick your whole screen or just one window.</span></p></div>
+			<div class="step"><b class="n">2</b><h3><span lang="de">Code rüber</span><span lang="en">Pass the code</span></h3><p><span lang="de">Glotzofon zeigt einen Code wie <code>K7M-X4P</code> und kopiert ihn gleich. Per Messenger weitergeben, fertig.</span><span lang="en">Glotzofon shows a code like <code>K7M-X4P</code> and copies it right away. Send it via messenger, done.</span></p></div>
+			<div class="step"><b class="n">3</b><h3><span lang="de">Glotze an</span><span lang="en">Telly on</span></h3><p><span lang="de">Deine Freunde tippen den Code in der App oder <a href="#zuschauen">hier auf der Seite</a> ein und schauen zu.</span><span lang="en">Your friends type the code into the app or <a href="#zuschauen">here on this page</a> and watch.</span></p></div>
 		</div>
 		<div class="feature">
 			<div class="text">
-				<h3>Du teilst, die anderen schauen</h3>
-				<p>Nach dem Start wird Glotzofon zu einer schmalen Leiste am Bildschirmrand. Die Zuschauer sehen sie nicht.</p>
-				<ul>
+				<h3><span lang="de">Du teilst, die anderen schauen</span><span lang="en">You share, they watch</span></h3>
+				<p><span lang="de">Nach dem Start wird Glotzofon zu einer schmalen Leiste am Bildschirmrand. Die Zuschauer sehen sie nicht.</span><span lang="en">Once you start, Glotzofon turns into a slim bar at the edge of your screen. Viewers don't see it.</span></p>
+				<ul lang="de">
 					<li>Code, Zuschauer und Verbindung immer im Blick</li>
 					<li>30 oder 60 fps, Auflösung und Datenrate live umstellen</li>
 					<li>Anderen Monitor oder anderes Fenster teilen, ohne neuen Code</li>
 					<li>Klappt ohne Maus zu einem kleinen Reiter zusammen</li>
 				</ul>
+				<ul lang="en">
+					<li>Code, viewers and connection always in sight</li>
+					<li>Switch 30 or 60 fps, resolution and bitrate live</li>
+					<li>Share another monitor or window without a new code</li>
+					<li>Folds into a small tab when the mouse is away</li>
+				</ul>
 			</div>
-			<div class="shot"><img src="img/2-teilen.png" alt="Glotzofon beim Teilen: Code, Vorschau und Zuschauer" loading="lazy"></div>
+			<div class="shot"><img lang="de" src="img/2-teilen.png" alt="Glotzofon beim Teilen: Code, Vorschau und Zuschauer" loading="lazy"><img lang="en" src="img/en/2-teilen.png" alt="Glotzofon while sharing: code, preview and viewers" loading="lazy"></div>
 		</div>
 	</div>
 </section>
 
 <section id="funktionen">
 	<div class="wrap">
-		<h2>Klein, aber kann was</h2>
-		<p class="sub">Eine einzige EXE, die alles mitbringt. Für alles, was über Zuschauen hinausgeht, gibt es Fernwartungs-Tools. Glotzofon will nur eins: schnell zeigen.</p>
+		<h2><span lang="de">Klein, aber kann was</span><span lang="en">Small, but capable</span></h2>
+		<p class="sub"><span lang="de">Eine einzige EXE, die alles mitbringt. Für alles, was über Zuschauen hinausgeht, gibt es Fernwartungs-Tools. Glotzofon will nur eins: schnell zeigen.</span><span lang="en">A single EXE that brings everything along. For anything beyond watching there are remote desktop tools. Glotzofon does one thing: show it quickly.</span></p>
 		<div class="grid">
-			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Nur zuschauen</h3><p>Niemand kann deine Maus oder Tastatur steuern. Wer zuschaut, sieht nur, was du freigibst.</p></div>
-			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div><h3>Auch im Browser</h3><p>Zuschauen geht ohne App, direkt auf dieser Seite. Praktisch für alle, die nichts installieren wollen.</p></div>
-			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></div><h3>Grafikkarte kodiert</h3><p>Nur lizenzfreie Codecs: AV1 per Grafikkarte (NVIDIA RTX 40/50, Intel Arc, neuere AMD), sonst VP9. Scharf bis 4K.</p></div>
-			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.5a5 5 0 0 1 5 5"/></svg></div><h3>Mehrere Zuschauer</h3><p>Ein Code für alle. Auf Wunsch immer derselbe feste Code, den sich deine Freunde merken können.</p></div>
-			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg></div><h3>Zeigen-Ping &amp; Reaktionen</h3><p>Rechtsklick ins Bild, und beim Teilenden erscheint genau dort ein Kreis. Dazu 👍, „Größer bitte“ oder „Ton fehlt“.</p></div>
-			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a14.5 14.5 0 0 1 20 0"/><circle cx="12" cy="19.5" r="1"/></svg></div><h3>Mehrere Wege</h3><p>Über Code im Internet, direkt per IP-Adresse im Heimnetz oder auf der LAN-Party (ganz ohne Server), oder mit eigenem Server.</p></div>
+			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><h3><span lang="de">Nur zuschauen</span><span lang="en">View only</span></h3><p><span lang="de">Niemand kann deine Maus oder Tastatur steuern. Wer zuschaut, sieht nur, was du freigibst.</span><span lang="en">Nobody can control your mouse or keyboard. Viewers only see what you share.</span></p></div>
+			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div><h3><span lang="de">Auch im Browser</span><span lang="en">In the browser too</span></h3><p><span lang="de">Zuschauen geht ohne App, direkt auf dieser Seite. Praktisch für alle, die nichts installieren wollen.</span><span lang="en">Watching works without the app, right on this page. Handy for anyone who doesn't want to install anything.</span></p></div>
+			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></div><h3><span lang="de">Grafikkarte kodiert</span><span lang="en">GPU encoding</span></h3><p><span lang="de">Nur lizenzfreie Codecs: AV1 per Grafikkarte (NVIDIA RTX 40/50, Intel Arc, neuere AMD), sonst VP9. Scharf bis 4K.</span><span lang="en">Royalty-free codecs only: AV1 on the graphics card (NVIDIA RTX 40/50, Intel Arc, newer AMD), otherwise VP9. Sharp up to 4K.</span></p></div>
+			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.5a5 5 0 0 1 5 5"/></svg></div><h3><span lang="de">Mehrere Zuschauer</span><span lang="en">Several viewers</span></h3><p><span lang="de">Ein Code für alle. Auf Wunsch immer derselbe feste Code, den sich deine Freunde merken können.</span><span lang="en">One code for everyone. Optionally always the same fixed code your friends can remember.</span></p></div>
+			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg></div><h3><span lang="de">Zeigen-Ping &amp; Reaktionen</span><span lang="en">Point ping &amp; reactions</span></h3><p><span lang="de">Rechtsklick ins Bild, und beim Teilenden erscheint genau dort ein Kreis. Dazu 👍, „Größer bitte“ oder „Ton fehlt“.</span><span lang="en">Right-click the picture and a circle appears at exactly that spot on the sharer's screen. Plus 👍, “Bigger please” or “No sound”.</span></p></div>
+			<div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a14.5 14.5 0 0 1 20 0"/><circle cx="12" cy="19.5" r="1"/></svg></div><h3><span lang="de">Mehrere Wege</span><span lang="en">Several ways to connect</span></h3><p><span lang="de">Über Code im Internet, direkt per IP-Adresse im Heimnetz oder auf der LAN-Party (ganz ohne Server), oder mit eigenem Server.</span><span lang="en">By code over the internet, directly by IP address at home or at a LAN party (no server at all), or with your own server.</span></p></div>
 		</div>
 
 		<div class="feature rev">
 			<div class="text">
-				<h3>Zuschauen wie am Fernseher</h3>
-				<p>Code eintippen, verbinden, zurücklehnen.</p>
-				<ul>
+				<h3><span lang="de">Zuschauen wie am Fernseher</span><span lang="en">Watch like it's TV</span></h3>
+				<p><span lang="de">Code eintippen, verbinden, zurücklehnen.</span><span lang="en">Type the code, connect, lean back.</span></p>
+				<ul lang="de">
 					<li>Vollbild per Doppelklick oder F11</li>
 					<li>Zoom und Verschieben mit Mausrad und Ziehen</li>
 					<li>Verbindungsampel mit Ping und Paketverlust</li>
 					<li>Bedienelemente verschwinden, wenn die Maus ruht</li>
 				</ul>
+				<ul lang="en">
+					<li>Full screen by double-click or F11</li>
+					<li>Zoom and pan with mouse wheel and drag</li>
+					<li>Connection light with ping and packet loss</li>
+					<li>Controls fade out when the mouse rests</li>
+				</ul>
 			</div>
-			<div class="shot"><img src="img/1-start.png" alt="Startseite von Glotzofon: Zeigen und Zuschauen" loading="lazy"></div>
+			<div class="shot"><img lang="de" src="img/1-start.png" alt="Startseite von Glotzofon: Zeigen und Zuschauen" loading="lazy"><img lang="en" src="img/en/1-start.png" alt="Glotzofon home screen: share and watch" loading="lazy"></div>
 		</div>
 
 		<div class="feature">
 			<div class="text">
-				<h3>Einstellen, wenn du willst</h3>
-				<p>Die Standardwerte passen meistens. Wer mag, dreht an allem.</p>
-				<ul>
+				<h3><span lang="de">Einstellen, wenn du willst</span><span lang="en">Tweak it if you like</span></h3>
+				<p><span lang="de">Die Standardwerte passen meistens. Wer mag, dreht an allem.</span><span lang="en">The defaults usually fit. If you like, you can adjust everything.</span></p>
+				<ul lang="de">
 					<li>Modus Scharf (30 fps) oder Flüssig (60 fps)</li>
 					<li>Höchste Auflösung, Datenrate, Codec und Grafikkarte</li>
 					<li>Leiste, Infobereich oder Fenster beim Teilen</li>
 					<li>Hell, Dunkel oder wie Windows, Deutsch oder Englisch</li>
 				</ul>
+				<ul lang="en">
+					<li>Sharp (30 fps) or Smooth (60 fps) mode</li>
+					<li>Maximum resolution, bitrate, codec and graphics card</li>
+					<li>Bar, notification area or window while sharing</li>
+					<li>Light, dark or like Windows, English or German</li>
+				</ul>
 			</div>
-			<div class="shot"><img src="img/3-einstellungen.png" alt="Einstellungen von Glotzofon" loading="lazy"></div>
+			<div class="shot"><img lang="de" src="img/3-einstellungen.png" alt="Einstellungen von Glotzofon" loading="lazy"><img lang="en" src="img/en/3-einstellungen.png" alt="Glotzofon settings" loading="lazy"></div>
 		</div>
 	</div>
 </section>
@@ -272,28 +300,30 @@ footer .links a:hover { color: var(--accent); }
 <section id="download" class="alt">
 	<div class="wrap">
 		<h2>Download</h2>
-		<p class="sub">Für Windows 10 und 11 (64 Bit). Herunterladen, starten, teilen. Eine Installation ist nicht nötig.</p>
+		<p class="sub"><span lang="de">Für Windows 10 und 11 (64 Bit). Herunterladen, starten, teilen. Eine Installation ist nicht nötig.</span><span lang="en">For Windows 10 and 11 (64-bit). Download, start, share. No installation needed.</span></p>
 		<table>
-			<tr><th>Datei</th><th>Größe</th><th>Hinweis</th></tr>
-			<tr><td><a href="https://github.com/xviews/xviews-glotzofon/releases/latest/download/XviewsGlotzofon.exe">XviewsGlotzofon.exe</a></td><td>ca. 9 MB</td><td>läuft sofort, keine Installation</td></tr>
+			<tr><th><span lang="de">Datei</span><span lang="en">File</span></th><th><span lang="de">Größe</span><span lang="en">Size</span></th><th><span lang="de">Hinweis</span><span lang="en">Note</span></th></tr>
+			<tr><td><a href="https://github.com/xviews/xviews-glotzofon/releases/latest/download/XviewsGlotzofon.exe">XviewsGlotzofon.exe</a></td><td><span lang="de">ca. 9 MB</span><span lang="en">about 9 MB</span></td><td><span lang="de">läuft sofort, keine Installation</span><span lang="en">runs right away, no install</span></td></tr>
 		</table>
 
 		<div class="steps dl">
-			<div class="card"><h3>SmartScreen</h3><p>Meldet Windows „Unbekannter Herausgeber“, auf „Weitere Informationen“ und dann auf „Trotzdem ausführen“ klicken. Die EXE ist nicht signiert, weil ein Zertifikat Geld kostet.</p></div>
-			<div class="card"><h3>Geprüft</h3><p>Prüfsumme (SHA-256) und VirusTotal-Ergebnis jeder Version stehen in den <a href="https://github.com/xviews/xviews-glotzofon/releases">Release-Notizen</a>. Updates holt sich die App auf Wunsch selbst.</p></div>
-			<div class="card"><h3>Privat</h3><p>Kein Konto, keine Datensammlung. Der Vermittlungsserver sieht nur den Code, nie das Bild. Das läuft direkt und verschlüsselt von PC zu PC.</p></div>
+			<div class="card"><h3>SmartScreen</h3><p><span lang="de">Meldet Windows „Unbekannter Herausgeber“, auf „Weitere Informationen“ und dann auf „Trotzdem ausführen“ klicken. Die EXE ist nicht signiert, weil ein Zertifikat Geld kostet.</span><span lang="en">If Windows says “Unknown publisher”, click “More info” and then “Run anyway”. The EXE isn't signed because a certificate costs money.</span></p></div>
+			<div class="card"><h3><span lang="de">Geprüft</span><span lang="en">Verified</span></h3><p><span lang="de">Prüfsumme (SHA-256) und VirusTotal-Ergebnis jeder Version stehen in den <a href="https://github.com/xviews/xviews-glotzofon/releases">Release-Notizen</a>. Updates holt sich die App auf Wunsch selbst.</span><span lang="en">Checksum (SHA-256) and VirusTotal result of every version are in the <a href="https://github.com/xviews/xviews-glotzofon/releases">release notes</a>. The app can fetch updates by itself.</span></p></div>
+			<div class="card"><h3><span lang="de">Privat</span><span lang="en">Private</span></h3><p><span lang="de">Kein Konto, keine Datensammlung. Der Vermittlungsserver sieht nur den Code, nie das Bild. Das läuft direkt und verschlüsselt von PC zu PC.</span><span lang="en">No account, no data collection. The signaling server only sees the code, never the picture. That goes directly and encrypted from PC to PC.</span></p></div>
 		</div>
 
-		<div class="note"><b>Wichtig:</b> Wer zuschaut, sieht alles, was im freigegebenen Bildschirm oder Fenster passiert. Vorher prüfen, was geteilt wird, und den Code nur Leuten geben, die du kennst. Alle Details stehen in der <a href="https://github.com/xviews/xviews-glotzofon#readme">Beschreibung auf GitHub</a>.</div>
+		<div class="note"><span lang="de"><b>Wichtig:</b> Wer zuschaut, sieht alles, was im freigegebenen Bildschirm oder Fenster passiert. Vorher prüfen, was geteilt wird, und den Code nur Leuten geben, die du kennst. Alle Details stehen in der <a href="https://github.com/xviews/xviews-glotzofon#readme">Beschreibung auf GitHub</a>.</span><span lang="en"><b>Important:</b> Viewers see everything that happens on the shared screen or window. Check what you share first, and only give the code to people you know. All details are in the <a href="https://github.com/xviews/xviews-glotzofon#readme">description on GitHub</a> (German).</span></div>
 	</div>
 </section>
 
 <section>
 	<div class="wrap story">
-		<h2>Über den Namen</h2>
-		<p><b>Glotzofon</b> steht wirklich im <a href="https://www.duden.de/rechtschreibung/Glotzofon">Duden</a>: So nannte man um 1960 scherzhaft den Fernseher, aus <i>glotzen</i> und <i>-fon</i> wie beim Grammofon. Damals saß die ganze Familie vor dem Glotzofon. Heute ist es dein Bildschirm, der für ein paar Minuten zum Fernseher für deine Freunde wird.</p>
-		<p>Und <b>Xviews</b>? <b>X</b> steht für das Unbekannte, <b>views</b> fürs Sehen. Hier ist es das, was du gerade auf dem Bildschirm hast und deinen Leuten unbedingt zeigen willst.</p>
-		<p class="claim">Xviews Glotzofon: Code rüber, Glotze an.</p>
+		<h2><span lang="de">Über den Namen</span><span lang="en">About the name</span></h2>
+		<p lang="de"><b>Glotzofon</b> steht wirklich im <a href="https://www.duden.de/rechtschreibung/Glotzofon">Duden</a>: So nannte man um 1960 scherzhaft den Fernseher, aus <i>glotzen</i> und <i>-fon</i> wie beim Grammofon. Damals saß die ganze Familie vor dem Glotzofon. Heute ist es dein Bildschirm, der für ein paar Minuten zum Fernseher für deine Freunde wird.</p>
+		<p lang="en"><b>Glotzofon</b> is a real word in the German <a href="https://www.duden.de/rechtschreibung/Glotzofon">Duden</a> dictionary: around 1960 it was a jokey name for the TV, from <i>glotzen</i> (to gawk) and <i>-fon</i> as in gramophone. Back then the whole family sat in front of the Glotzofon. Today your screen becomes the TV for your friends for a few minutes.</p>
+		<p lang="de">Und <b>Xviews</b>? <b>X</b> steht für das Unbekannte, <b>views</b> fürs Sehen. Hier ist es das, was du gerade auf dem Bildschirm hast und deinen Leuten unbedingt zeigen willst.</p>
+		<p lang="en">And <b>Xviews</b>? <b>X</b> stands for the unknown, <b>views</b> for seeing. Here it's whatever is on your screen right now that you just have to show your people.</p>
+		<p class="claim"><span lang="de">Xviews Glotzofon: Code rüber, Glotze an.</span><span lang="en">Xviews Glotzofon: pass the code, telly on.</span></p>
 	</div>
 </section>
 
@@ -303,13 +333,13 @@ footer .links a:hover { color: var(--accent); }
 			<img src="https://raw.githubusercontent.com/xviews/xviews/main/bilder/xviews.png" alt="Xviews">
 			<div>
 				<b>© 2026 Xviews</b>
-				<p>Kostenlos für die private Nutzung (<a href="https://github.com/xviews/xviews-glotzofon/blob/main/LICENSE.txt">Nutzungsbedingungen</a>). Verbindungsaufbau über <a href="https://peerjs.com">PeerJS</a>.</p>
+				<p><span lang="de">Kostenlos für die private Nutzung (<a href="https://github.com/xviews/xviews-glotzofon/blob/main/LICENSE.txt">Nutzungsbedingungen</a>). Verbindungsaufbau über <a href="https://peerjs.com">PeerJS</a>.</span><span lang="en">Free for private use (<a href="https://github.com/xviews/xviews-glotzofon/blob/main/LICENSE.txt">terms of use</a>). Connections are set up via <a href="https://peerjs.com">PeerJS</a>.</span></p>
 			</div>
 		</div>
 		<div class="links">
 			<a href="https://github.com/xviews/xviews-glotzofon">GitHub</a>
-			<a href="https://github.com/xviews/xviews-glotzofon/issues/new/choose">Fehler melden</a>
-			<a href="https://github.com/xviews">Weitere Xviews-Tools</a>
+			<a href="https://github.com/xviews/xviews-glotzofon/issues/new/choose"><span lang="de">Fehler melden</span><span lang="en">Report a bug</span></a>
+			<a href="https://github.com/xviews"><span lang="de">Weitere Xviews-Tools</span><span lang="en">More Xviews tools</span></a>
 		</div>
 	</div>
 </footer>
@@ -320,9 +350,39 @@ fetch("https://api.github.com/repos/xviews/xviews-glotzofon/releases/latest")
 	.then((j) => { if (j && j.tag_name) document.getElementById("ver").textContent = j.tag_name; })
 	.catch(() => { });
 
+// Sprache: gespeicherte Wahl, sonst wie der Browser (Deutsch nur bei deutschem Browser)
+const META = {
+	de: { title: "Xviews Glotzofon", desc: "Bildschirm kurz zeigen, ohne Fernwartungs-App: Code weitergeben, Freunde schauen in der App oder im Browser zu. Kostenlose, portable Windows-EXE, nur zuschauen.", bad: "Der Code hat sechs Zeichen, z. B. K7M-X4P." },
+	en: { title: "Xviews Glotzofon – show your screen, no fuss", desc: "Show your screen without a remote desktop app: pass on a code, friends watch in the app or in the browser. Free, portable Windows EXE, view only.", bad: "The code has six characters, e.g. K7M-X4P." },
+};
+let lang = "de";
+function pick() {
+	try { const s = localStorage.getItem("glotzofon.siteLang"); if (s === "de" || s === "en") return s; } catch (e) { }
+	return (navigator.language || "").toLowerCase().startsWith("de") ? "de" : "en";
+}
+function setLang(l, user) {
+	lang = l;
+	document.documentElement.lang = l;
+	document.title = META[l].title;
+	document.querySelector('meta[name="description"]').content = META[l].desc;
+	document.querySelectorAll(".lang button").forEach((b) => b.classList.toggle("on", b.dataset.lang === l));
+	document.querySelectorAll("[data-" + l + "]").forEach((el) => { el.placeholder = el.dataset[l]; });
+	if (msg.textContent) msg.textContent = META[l].bad;
+	if (!user) return;
+	try {
+		localStorage.setItem("glotzofon.siteLang", l);
+		// Zuschau-Seite (gleiche Adresse) soll dieselbe Sprache zeigen
+		const s = JSON.parse(localStorage.getItem("settings") || "{}");
+		s.lang = l;
+		localStorage.setItem("settings", JSON.stringify(s));
+	} catch (e) { }
+}
+
 // Code-Eingabe wie in der App: Großbuchstaben, Bindestrich nach drei Zeichen
 const code = document.getElementById("code"), who = document.getElementById("who"), msg = document.getElementById("msg");
 try { who.value = localStorage.getItem("viewerName") || ""; } catch (e) { } // gleicher Speicher wie die Zuschau-Seite
+document.querySelectorAll(".lang button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang, true)));
+setLang(pick());
 code.addEventListener("input", () => {
 	const raw = code.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
 	code.value = raw.length > 3 ? raw.slice(0, 3) + "-" + raw.slice(3) : raw;
@@ -331,7 +391,7 @@ code.addEventListener("input", () => {
 document.getElementById("zuschauen").addEventListener("submit", (e) => {
 	e.preventDefault();
 	const raw = code.value.replace("-", "");
-	if (raw.length !== 6) { code.classList.add("bad"); msg.textContent = "Der Code hat sechs Zeichen, z. B. K7M-X4P."; code.focus(); return; }
+	if (raw.length !== 6) { code.classList.add("bad"); msg.textContent = META[lang].bad; code.focus(); return; }
 	try { localStorage.setItem("viewerName", who.value.trim().slice(0, 24)); sessionStorage.setItem("glotzofon.go", "1"); } catch (e) { }
 	location.href = "zuschauen/#" + code.value;
 });
