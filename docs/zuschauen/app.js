@@ -603,6 +603,8 @@ function startViewer() {
       console.log('viewer: stream erhalten');
       clearTimeout(viewer.connectTimer);
       $('remote').srcObject = stream;
+      // Ohne Klick (Auto-Verbinden von der Webseite) blockiert der Browser Ton: dann stumm starten
+      $('remote').play().catch(() => { $('remote').muted = true; $('remote').play().catch(() => {}); refreshTexts(); });
       $('waiting').hidden = true;
       startStats(call.peerConnection);
       viewerConnected(call.peerConnection); // extras.js: Zoom zurücksetzen, Ampel starten
@@ -1070,6 +1072,12 @@ const ready = (async () => {
   await loadInfo();
   checkUpdates(false);
   // Code schon da (Link aus dem Browser)? Dann direkt auf "Verbinden"
-  if (normalizeCode($('codeInput').value)) $('btnWatch').focus();
+  if (normalizeCode($('codeInput').value)) {
+    $('btnWatch').focus();
+    // Von der Webseite mit "Verbinden" hergekommen: gleich verbinden
+    let go = false;
+    try { go = sessionStorage.getItem('glotzofon.go') === '1'; sessionStorage.removeItem('glotzofon.go'); } catch { /* egal */ }
+    if (go && document.body.classList.contains('web')) $('btnWatch').click();
+  }
   else $('codeInput').focus();
 })();
