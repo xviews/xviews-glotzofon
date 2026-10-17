@@ -50,7 +50,7 @@ Direkter Download der neuesten Version für Windows 10/11 (64 Bit), ohne Install
 
 **Voraussetzungen:** Windows 10 oder 11 (64 Bit). Die App nutzt Microsoft Edge WebView2, das bei Windows dabei ist, egal welchen Browser du verwendest.
 
-**Sicherheit:** Die Prüfsumme (SHA-256) jeder Version steht im Release-Text. Mit `Get-FileHash .\XviewsGlotzofon.exe` in PowerShell kannst du sie selbst prüfen. Jede Version wird außerdem bei VirusTotal geprüft, das Ergebnis steht mit Link ebenfalls im Release-Text.
+**Sicherheit:** Die Prüfsumme (SHA-256) jeder Version steht im Release-Text. Mit `Get-FileHash .\XviewsGlotzofon.exe` in PowerShell kannst du sie selbst prüfen. Jede Version wird außerdem bei VirusTotal geprüft, das Ergebnis steht mit Link ebenfalls im Release-Text. Bei Version 1.0.0 melden 3 von 71 Scannern einen Fehlalarm (kleinere Hersteller, die per Muster- oder KI-Bewertung urteilen). Microsoft Defender und alle großen Hersteller finden nichts ([Ergebnis](https://www.virustotal.com/gui/file/5796ac13a9d63ab1bce1c9ad7010139bd5bcdaed1048462c910596d53c944b94)).
 
 **Beim ersten Start:**
 - Meldet SmartScreen „Unbekannter Herausgeber“, auf **„Weitere Informationen“** und dann auf **„Trotzdem ausführen“** klicken. Die EXE ist nicht signiert, weil ein Zertifikat Geld kostet.
