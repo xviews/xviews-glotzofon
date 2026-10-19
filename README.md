@@ -40,6 +40,14 @@
 |---|---|---|
 | `XviewsGlotzofon.exe` öffnen, auf **Bildschirm teilen** klicken und den ganzen Bildschirm oder ein Fenster wählen. | Glotzofon zeigt einen Code wie `K7M-X4P` und kopiert ihn gleich. Per Messenger weitergeben. | Deine Freunde tippen den Code in ihre Glotzofon-App ein und schauen zu. |
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="bilder/demo-dark-de.gif">
+    <img src="bilder/demo-light-de.gif" width="960" alt="So sieht das aus: links wird geteilt, rechts schaut ein Freund zu, mit Zeigen-Ping">
+  </picture><br>
+  <sub>Links teilst du, rechts schaut Max zu. Sein Rechtsklick ins Bild erscheint bei dir als Kreis.</sub>
+</p>
+
 ## Funktionen
 
 **Zeigen**

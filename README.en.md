@@ -40,6 +40,14 @@
 |---|---|---|
 | Open `XviewsGlotzofon.exe`, click **Share screen** and pick your whole screen or a window. | Glotzofon shows a code like `K7M-X4P` and copies it right away. Send it via messenger. | Your friends type the code into their Glotzofon app and watch. |
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="bilder/demo-dark-en.gif">
+    <img src="bilder/demo-light-en.gif" width="960" alt="What it looks like: sharing on the left, a friend watching on the right, with point ping">
+  </picture><br>
+  <sub>You share on the left, Max watches on the right. His right-click on the picture shows up as a circle on your side.</sub>
+</p>
+
 ## Features
 
 **Sharing**
