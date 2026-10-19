@@ -1,0 +1,20 @@
+Nutzungsbedingungen – Xviews Glotzofon
+==========================================
+
+© 2026 Xviews. Alle Rechte vorbehalten.
+
+Xviews Glotzofon ist kostenlos für die private Nutzung. Die unveränderte Weitergabe der
+Programmdatei ist erlaubt.
+
+Nicht gestattet sind:
+- der Verkauf des Programms,
+- das Verändern des Programms,
+- das Zurückentwickeln (Dekompilieren, Disassemblieren),
+- die Übernahme von Programmcode oder Teilen davon in andere Software,
+- das Einspeisen des Programms oder seines Codes in KI-Systeme, um es zu
+  analysieren oder nachzubauen.
+
+Das Programm wird ohne Gewähr bereitgestellt, so wie es ist.
+
+Die Rechte an eingebundenen Komponenten liegen bei ihren jeweiligen Urhebern.
+Deren Lizenzen stehen in der App unter "Info".
